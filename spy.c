@@ -4,35 +4,35 @@
 
 typedef struct stck
 {
-	char veriler[MAX];
+	char data[MAX];
 }STACK;
 
 
-int sifrecoz(STACK *s, char *css)
+int encode(STACK *s, char *css)
 {
-	int i = 0, j = 0, tmpsayi, k;
-	while (s->veriler[i] != 0)
+	int i = 0, j = 0, tmpnum, k;
+	while (s->data[i] != 0)
 	{
-		if (s->veriler[i] >= 48 && s->veriler[i] <= 57)
+		if (s->data[i] >= 48 && s->data[i] <= 57)
 		{
-			tmpsayi = s->veriler[i] - 48;
-			if (tmpsayi > j)
+			tmpnum = s->data[i] - 48;
+			if (tmpnum > j)
 			{
 				return 0;
 			}
 			else
 			{
-				for (k = 0; k < tmpsayi; k++)
+				for (k = 0; k < tmpnum; k++)
 				{
 					css[j - k - 1] = 0;
 				}
 
-				j = j - tmpsayi;
+				j = j - tmpnum;
 			}
 		}
 		else
 		{
-			css[j] = s->veriler[i];
+			css[j] = s->data[i];
 			j++;
 		}
 
@@ -44,29 +44,29 @@ int sifrecoz(STACK *s, char *css)
 int main()
 {
 	STACK stack1, stack2;
-	char metin[MAX], temp[MAX], casus1[MAX], casus2[MAX];
-	int i = 0, j = 0, tmpsayi, k;
-	printf("ilk sifreli mesaji giriniz:\n");
-	scanf("%s", metin);
-	strcpy(stack1.veriler, metin);
-	printf("ikinci sifreli mesaji giriniz:\n");
-	scanf("%s", metin);
-	strcpy(stack2.veriler, metin);
+	char input[MAX], temp[MAX], casus1[MAX], casus2[MAX];
+	int i = 0, j = 0, tmpnum, k;
+	printf("type the first message:\n");
+	scanf("%s", input);
+	strcpy(stack1.data, input);
+	printf("type the second message:\n");
+	scanf("%s", input);
+	strcpy(stack2.data, input);
 
 
-	if ((sifrecoz(&stack1, casus1) == 0) || (sifrecoz(&stack2, casus2) == 0))
+	if ((encode(&stack1, spy1) == 0) || (encode(&stack2, spy2) == 0))
 	{
-		printf("hata oldu!");
+		printf("error!");
 	}
 	else
 	{
-		printf("casus1: %s\n", casus1);
-		printf("casus2: %s\n", casus2);
-		if(strcmp(casus1, casus2)==0){
-			printf("casuslar konusabilir.");
+		printf("spy1: %s\n", spy1);
+		printf("spy2: %s\n", spy2);
+		if(strcmp(spy1, spy2)==0){
+			printf("spys can communicate.");
 		}
 		else{
-			printf("casuslar konusamaz.");
+			printf("spys can not communicate.");
 		}
 	}
 	return 0;
